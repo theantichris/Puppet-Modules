@@ -1,3 +1,9 @@
 # Puppet Modules
 
-A collection of Puppet modules I've written. A Vagratfile is included to make setting up virtual machines for projects easy.
+A collection of Puppet modules I've written. A Vagrantfile is included to make setting up virtual machines for projects easy.
+
+## Modules
+* [MySQL](http://www.mysql.com/)
+* [Nginx](http://nginx.org/)
+* [PHP5](http://php.net/)
+* [WordPress](http://wordpress.org/)
