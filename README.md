@@ -7,3 +7,4 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 * [Nginx](http://nginx.org/)
 * [PHP5](http://php.net/)
 * [WordPress](http://wordpress.org/)
+* [node.js](http://nodejs.org/)
