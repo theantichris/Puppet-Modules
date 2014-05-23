@@ -20,6 +20,7 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 
 ### Dependency Managers
 * [Bower](http://bower.io/)
+* [Composer](https://getcomposer.org/)
 
 ### Task Runners
 * [Grunt](http://gruntjs.com/)
