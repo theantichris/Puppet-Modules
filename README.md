@@ -10,3 +10,4 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 * [node.js](http://nodejs.org/)
 * [Bower](http://bower.io/)
 * [Grunt](http://gruntjs.com/)
+* [MongoDB](http://www.mongodb.org/)
