@@ -3,11 +3,25 @@
 A collection of Puppet modules I've written. A Vagrantfile is included to make setting up virtual machines for projects easy.
 
 ## Modules
-* [MySQL](http://www.mysql.com/)
+
+### Web Servers
 * [Nginx](http://nginx.org/)
-* [PHP5](http://php.net/)
-* [WordPress](http://wordpress.org/)
-* [node.js](http://nodejs.org/)
-* [Bower](http://bower.io/)
-* [Grunt](http://gruntjs.com/)
+
+### Databases
+* [MySQL](http://www.mysql.com/)
 * [MongoDB](http://www.mongodb.org/)
+
+### Programming Languages
+* [PHP5](http://php.net/)
+
+### CMS
+* [WordPress](http://wordpress.org/)
+
+### Dependency Managers
+* [Bower](http://bower.io/)
+
+### Task Runners
+* [Grunt](http://gruntjs.com/)
+
+### Other
+* [node.js](http://nodejs.org/)
