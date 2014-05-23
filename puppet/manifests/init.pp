@@ -24,4 +24,4 @@ host {
   ip => '127.0.1.1'
 }
 
-# include mysql, nginx, php, wordpress
+include mysql#, nginx, php, wordpress
