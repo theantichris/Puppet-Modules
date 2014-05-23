@@ -14,6 +14,7 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 
 ### Programming Languages
 * [PHP5](http://php.net/)
+* [Ruby](https://www.ruby-lang.org/en/)
 
 ### CMS
 * [WordPress](http://wordpress.org/)
