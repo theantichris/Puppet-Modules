@@ -1,4 +1,4 @@
-class nginx {
+class nginx($webRoot = '/vagrant/web') {
   exec {
     'add-nginx-repo':
     command => 'sudo add-apt-repository ppa:nginx/stable',
@@ -21,15 +21,15 @@ class nginx {
 
   # Create a folder in the Vagrant sync folder for the web root.
   file {
-    '/vagrant/web':
+    "${webRoot}":
     ensure => directory,
   }
 
   file {
-    '/vagrant/web/test.html':
+    "${webRoot}/test.html":
     ensure => present,
     source => 'puppet:///modules/nginx/test.html',
-    require=> File['/vagrant/web'],
+    require=> File["${webRoot}"],
   }
 
   # Create the default virtual host file from the module.
