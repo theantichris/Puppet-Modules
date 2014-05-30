@@ -1,4 +1,4 @@
-class php {
+class php($webRoot = '/vagrant/web') {
   exec {
    'add-php5-repo':
    command => 'sudo add-apt-repository ppa:ondrej/php5',
@@ -28,9 +28,9 @@ class php {
   }
 
   file {
-    '/var/www/phpinfo.php':
+    "${$webRoot}/phpinfo.php":
     ensure => present,
     source => 'puppet:///modules/php/phpinfo.php',
-    require => File['/var/www'],
+    require => File["${webRoot}"],
   }
 }
