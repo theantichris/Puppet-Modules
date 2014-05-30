@@ -1,4 +1,4 @@
-class mysql {
+class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'database_dev') {
   package {
     ['mysql-server']:
     ensure => present,
@@ -13,16 +13,16 @@ class mysql {
 
   exec {
     'set-mysql-root-password':
-    unless  => 'mysqladmin -uroot -p123 status',
-    command => 'mysqladmin -u root password 123',
+    unless  => "mysqladmin -u${rootUsername} -p${rootPassword} status",
+    command => "mysqladmin -u ${rootUsername} password ${rootPassword}",
     require => Service['mysql']
   }
 
   # Create a new database.
   exec {
     'create-database':
-    unless => 'mysql -uroot -p123 database_dev',
-    command => 'mysql -uroot -p123 -e "create database database_dev;"',
+    unless => "mysql -u${rootUsername} -p${rootPassword} ${databaseName}",
+    command => "mysql -u${rootUsername} -p${rootPassword} -e \"create database ${databaseName};\"",
     require => Exec['set-mysql-root-password']
   }
 }
