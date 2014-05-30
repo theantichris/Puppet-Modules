@@ -34,9 +34,9 @@ class nginx {
   }
 
   file {
-    '/var/www/index.html':
+    '/var/www/test.html':
     ensure => present,
-    source => 'puppet:///modules/nginx/index.html',
+    source => 'puppet:///modules/nginx/test.html',
     require=> File['/var/www'],
   }
 
