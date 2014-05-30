@@ -19,25 +19,17 @@ class nginx {
     require => Package['nginx'],
   }
 
-  # Create a folder in the Vagrant sync folder to link the web root too.
+  # Create a folder in the Vagrant sync folder for the web root.
   file {
     '/vagrant/web':
     ensure => directory,
   }
 
-  # Create the web root directory at /var/www and link it to the web folder.
   file {
-    '/var/www':
-    ensure => link,
-    target => '/vagrant/web',
-    require => File['/vagrant/web'],
-  }
-
-  file {
-    '/var/www/test.html':
+    '/vagrant/web/test.html':
     ensure => present,
     source => 'puppet:///modules/nginx/test.html',
-    require=> File['/var/www'],
+    require=> File['/vagrant/web'],
   }
 
   # Create the default virtual host file from the module.
