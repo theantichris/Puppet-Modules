@@ -19,7 +19,7 @@ class nginx($webRoot = '/vagrant/web') {
     require => Package['nginx'],
   }
 
-  # Create a folder in the Vagrant sync folder for the web root.
+  # Create the web root folder.
   file {
     "${webRoot}":
     ensure => directory,
