@@ -2,7 +2,7 @@ class nginx($webRoot = '/vagrant/web') {
   exec {
     'add-nginx-repo':
     command => 'sudo add-apt-repository ppa:nginx/stable',
-    unless => 'ls /etc/apt/sources.list.d/nginx-stable-precise.list',
+    unless => 'ls /etc/apt/sources.list.d/nginx-stable-trusty.list',
     notify => Exec['sudo apt-get update'],
     require => Package['python-software-properties'],
   }

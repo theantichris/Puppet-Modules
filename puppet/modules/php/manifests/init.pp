@@ -10,20 +10,12 @@ class php($webRoot = '/vagrant/web') {
   package {
     ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl']:
     ensure => present,
-    require => Exec['add-php5-repo', 'update-package-list'],
+    require => Exec['add-php5-repo', 'update-packge-list'],
   }
 
   service {
     'php5-fpm':
     ensure => running,
-    require => Package['php5-fpm'],
-  }
-
-  file {
-    '/etc/php5/fpm/pool.d/www.conf':
-    ensure => present,
-    source => 'puppet:///modules/php/www.conf',
-    notify => Service['php5-fpm'],
     require => Package['php5-fpm'],
   }
 
