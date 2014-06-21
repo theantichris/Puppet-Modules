@@ -9,14 +9,14 @@ class mongodb {
     'add-mongodb-repo':
     command => "echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list",
     unless => 'ls /etc/apt/sources.list.d/mongodb.list',
-    notify => Exec['sudo apt-get update'],
+    notify => Exec['update-for-repo'],
     require => Package['python-software-properties', 'python', 'g++', 'make'],
   }
 
   package {
     'mongodb-org':
     ensure => present,
-    require => Exec['add-mongodb-repo', 'sudo apt-get update'],
+    require => Exec['add-mongodb-repo', 'update-for-repo'],
   }
 
   service {
