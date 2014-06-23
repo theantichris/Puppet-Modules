@@ -29,3 +29,7 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 ### Other
 * [node.js](http://nodejs.org/)
 * [wp-cli](http://wp-cli.org/)
+
+## Contributing
+
+Submit any contributions to this project through a GitHub pull request and I'll be more than happy to review and include it.
