@@ -13,7 +13,7 @@ class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'data
 
   exec{
     'set-myconf-permissions':
-    command => 'chmod 644 /etc/mysql/my.cnf',
+    command => 'sudo chmod 644 /etc/mysql/my.cnf',
     require => File['/etc/mysql/my.cnf'],
   }
 
