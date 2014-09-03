@@ -18,11 +18,4 @@ class php($webRoot = '/vagrant/web') {
     ensure => running,
     require => Package['php5-fpm'],
   }
-
-  file {
-    "${$webRoot}/phpinfo.php":
-    ensure => present,
-    source => 'puppet:///modules/php/phpinfo.php',
-    require => File["${webRoot}"],
-  }
 }
