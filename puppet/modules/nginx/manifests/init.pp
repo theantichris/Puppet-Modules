@@ -1,27 +1,22 @@
 class nginx($webRoot = '/vagrant/web') {
-#  exec {
-#    'add-nginx-repo':
-#    command => 'sudo add-apt-repository ppa:nginx/stable',
-#    unless => 'ls /etc/apt/sources.list.d/nginx-stable-trusty.list',
-#    notify => Exec['update-for-repo'],
-#    require => Package['python-software-properties'],
-#  }
-
-  # TODO: Add unless condition.
   exec {
     'download-nginx-key':
     command => 'wget http://nginx.org/keys/nginx_signing.key',
+    unless => 'grep -rl "deb http://nginx.org/packages/ubuntu/ trusty nginx" /etc/apt/sources.list',
+    require => Package['python-software-properties'],
   }
 
   exec {
     'add-nginx-key':
     command => 'sudo apt-key add nginx_signing.key',
+    unless => 'grep -rl "deb http://nginx.org/packages/ubuntu/ trusty nginx" /etc/apt/sources.list',
     require => Exec['download-nginx-key']
   }
 
   exec {
-    'add-nginx-repos':
+    'add-nginx-repo':
     command => 'sudo add-apt-repository "deb http://nginx.org/packages/ubuntu/ trusty nginx"',
+    unless => 'grep -rl "deb http://nginx.org/packages/ubuntu/ trusty nginx" /etc/apt/sources.list',
     require => Exec['add-nginx-key'],
     notify => Exec['update-for-repo']
   }
@@ -29,7 +24,7 @@ class nginx($webRoot = '/vagrant/web') {
   package {
     'nginx':
     ensure => present,
-    require => Exec['add-nginx-repos', 'update-for-repo'],
+    require => Exec['add-nginx-repo', 'update-for-repo'],
   }
 
   service {
