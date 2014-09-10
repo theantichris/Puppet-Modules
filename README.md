@@ -6,7 +6,7 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 
 ### Web Servers
 * [Nginx](http://nginx.org/)
-* [Apache](http://httpd.apache.org/)
+* [Apache](http://httpd.apache.org/) - Not updated
 
 ### Databases
 * [MySQL](http://www.mysql.com/)
