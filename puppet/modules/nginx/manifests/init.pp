@@ -33,6 +33,14 @@ class nginx($webRoot = '/vagrant/web') {
     require => Package['nginx'],
   }
 
+  exec {
+    'add-nginx-to-www-data':
+    command => 'sudo usermod -a -G www-data nginx',
+    unless => 'groups nginx | grep "www-data"',
+    notify => Service['nginx'],
+    require => Package['nginx'],
+  }
+
   # Create the web root folder.
   file {
     "${webRoot}":
