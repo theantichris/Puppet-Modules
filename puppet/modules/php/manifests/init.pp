@@ -1,16 +1,8 @@
 class php($webRoot = '/vagrant/web') {
-  exec {
-   'add-php5-repo':
-   command => 'sudo add-apt-repository ppa:ondrej/php5',
-   unless => 'ls /etc/apt/sources.list.d/ondrej-php5-trusty.list',
-   notify => Exec['update-for-repo'],
-   require => Package['python-software-properties'],
-  }
-
   package {
-    ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl']:
+    ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl', 'php5-mcrypt', 'php5-json']:
     ensure => present,
-    require => Exec['add-php5-repo', 'update-for-repo'],
+    require => Exec['update-package-list'],
   }
 
   service {
