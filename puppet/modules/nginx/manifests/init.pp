@@ -7,6 +7,7 @@ class nginx($webRoot = '/vagrant/web') {
 #    require => Package['python-software-properties'],
 #  }
 
+  # TODO: Add unless condition.
   exec {
     'download-nginx-key':
     command => 'wget http://nginx.org/keys/nginx_signing.key',
