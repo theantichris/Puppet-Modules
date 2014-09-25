@@ -6,7 +6,6 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 
 ### Web Servers
 * [Nginx](http://nginx.org/)
-* [Apache](http://httpd.apache.org/) - Not updated
 
 ### Databases
 * [MySQL](http://www.mysql.com/)
@@ -15,9 +14,6 @@ A collection of Puppet modules I've written. A Vagrantfile is included to make s
 ### Programming Languages
 * [PHP5](http://php.net/)
 * [Ruby](https://www.ruby-lang.org/en/)
-
-### CMS
-* [WordPress](http://wordpress.org/)
 
 ### Dependency Managers
 * [Bower](http://bower.io/)
