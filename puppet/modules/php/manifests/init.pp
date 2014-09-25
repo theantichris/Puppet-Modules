@@ -14,6 +14,7 @@ class php($webRoot = '/vagrant/web') {
   exec {
     'enable-mcrypt':
       command => 'sudo php5enmod mcrypt',
+      unless  => 'php -m | grep "mcrypt"',
       require => Package['php5-mcrypt'],
       notify  => Service['php5-fpm']
   }
