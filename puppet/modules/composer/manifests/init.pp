@@ -13,14 +13,4 @@ class composer($workingDir = '/vagrant', $composerHome='/home/vagrant/.composer'
     unless => 'ls /usr/local/bin/composer',
     require => Exec['download-composer'],
   }
-
-  # Run composer update if a composer.json file exists.
-  exec {
-    'composer-update':
-    command => 'composer update',
-    cwd => "${workingDir}",
-    environment => "COMPOSER_HOME=${composerHome}",
-    onlyif => "ls ${$workingDir}/composer.json",
-    require => Exec['move-composer'],
-  }
 }
