@@ -2,7 +2,7 @@ class nodejs{
   exec {
     'add-nodejs-repo':
     command => 'sudo add-apt-repository ppa:chris-lea/node.js',
-    unless => 'ls /etc/apt/sources.list.d/chris-lea-node_js-precise.list',
+    unless => 'ls /etc/apt/sources.list.d/chris-lea-node_js-trusty.list',
     notify => Exec['update-for-repo'],
     require => Package['python-software-properties'],
   }
