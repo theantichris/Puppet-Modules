@@ -1,6 +1,6 @@
 class php($webRoot = '/vagrant/web') {
   package {
-    ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl', 'php5-mcrypt', 'php5-json']:
+    ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl', 'php5-mcrypt']:
     ensure => present,
     require => Exec['update-package-list'],
   }
