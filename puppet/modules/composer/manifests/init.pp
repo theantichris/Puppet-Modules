@@ -1,4 +1,4 @@
-class composer($workingDir = '/vagrant', $composerHome='/home/vagrant/.composer') {
+class composer() {
   exec {
     'download-composer':
     command => 'curl -sS https://getcomposer.org/installer | php',
