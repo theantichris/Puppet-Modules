@@ -18,7 +18,7 @@ class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'data
   }
 
   package {
-    ['mysql-server-5.6']:
+    ['mysql-server-5.6', 'php5-mysql']:
     ensure => present,
     require => Exec['update-package-list', 'set-myconf-permissions'],
   }

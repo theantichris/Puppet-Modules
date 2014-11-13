@@ -14,7 +14,7 @@ class mongodb {
   }
 
   package {
-    'mongodb-org':
+    ['mongodb-org', 'php5-mongo']:
     ensure => present,
     require => Exec['add-mongodb-repo', 'update-for-repo'],
   }
