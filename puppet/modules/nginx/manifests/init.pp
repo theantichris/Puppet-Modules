@@ -47,11 +47,11 @@ class nginx($webRoot = '/vagrant/web') {
     ensure => directory,
   }
 
-  # Create the default virtual host file from the module.
+  # Create the virtual host file from the module.
   file {
-    '/etc/nginx/conf.d/default.conf':
+    '/etc/nginx/conf.d/puppet.conf':
     ensure => present,
-    source => 'puppet:///modules/nginx/default.conf',
+    source => 'puppet:///modules/nginx/puppet.conf',
     notify => Service['nginx'],
     require => Package['nginx'],
   }
