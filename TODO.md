@@ -1,1 +1,0 @@
-* Give Nginx virtual host file a specific name
