@@ -6,3 +6,4 @@
 * Add bower install to bower module
 * Add grunt command to grunt module
 * Create swap module
+* Switch host name to use xip.io
