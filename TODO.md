@@ -5,3 +5,4 @@
 * Add npm install to nodejs module
 * Add bower install to bower module
 * Add grunt command to grunt module
+* Create swap module
