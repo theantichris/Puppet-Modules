@@ -7,3 +7,4 @@
 * Add grunt command to grunt module
 * Create swap module
 * Switch host name to use xip.io
+* Only need one package update
