@@ -8,3 +8,4 @@
 * Create swap module
 * Switch host name to use xip.io
 * Only need one package update
+* Change installation of required packages to exec
