@@ -12,4 +12,4 @@ host {
 }
 
 # include <comma separated list of desired modules>
-include nodejs, bower, gruntjs
+include mongodb
