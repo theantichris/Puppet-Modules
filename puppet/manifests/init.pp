@@ -12,4 +12,4 @@ host {
 }
 
 # include <comma separated list of desired modules>
-include nginx, php, composer, xdebug, mysql
+include nginx, php, composer, xdebug, mysql, ruby
