@@ -8,7 +8,7 @@ exec {
 
 host {
   'puppet.192.168.56.107.xip.io':
-  ip => '127.0.1.1'
+    ip => '127.0.1.1'
 }
 
 # include <comma separated list of desired modules>
