@@ -11,7 +11,7 @@ class nginx($webRoot = '/vagrant/web') {
     'add nginx key':
       command     => 'sudo apt-key add nginx_signing.key',
       refreshonly => true,
-      notify      => Exec['add nginx repo'],
+      notify      => Exec['add nginx repo', 'delete nginx key'],
   }
 
   exec {
@@ -53,5 +53,11 @@ class nginx($webRoot = '/vagrant/web') {
       source  => 'puppet:///modules/nginx/puppet.conf',
       notify  => Service['nginx'],
       require => Package['nginx'],
+  }
+
+  exec {
+    'delete nginx key':
+      command     => 'sudo rm nginx_signing.key',
+      refreshonly => true,
   }
 }
