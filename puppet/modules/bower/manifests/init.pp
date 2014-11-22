@@ -7,7 +7,7 @@ class bower($cwd = '/vagrant', $user = 'vagrant') {
   }
 
   exec {
-    'bower-install':
+    'bower install':
       command => 'bower install --quiet --config.interactive=false',
       cwd     => $cwd,
       user    => $user,
