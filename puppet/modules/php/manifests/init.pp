@@ -1,8 +1,8 @@
-class php($webRoot = '/vagrant/web') {
+class php {
   package {
     ['php5-fpm', 'php5-cli', 'php5-curl', 'php5-mcrypt', 'php5-dev']:
       ensure  => present,
-      require => Exec['update-package-list'],
+      require => Exec['install packages'],
   }
 
   service {
