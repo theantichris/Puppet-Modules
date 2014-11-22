@@ -1,24 +1,24 @@
-class wpcli {
+class wpcli($cwd = '/vagrant'){
   exec {
-    'download-wp-cli':
-    command => 'curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar',
-    cwd => '/vagrant',
-    unless => 'ls /usr/local/bin/wp',
+    'download wpcli':
+      command  => 'curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar',
+      cwd      => $cwd,
+      creates  => '/usr/local/bin/wp',
+      notify   => Exec['make wpcli executable'],
   }
 
   exec {
-    'make-wp-cli-executable':
-    command => 'chmod +x wp-cli.phar',
-    cwd => '/vagrant',
-    require => Exec['download-wp-cli'],
-    unless => 'ls /usr/local/bin/wp',
+    'make wpcli executable':
+      command     => 'sudo chmod +x wp-cli.phar',
+      cwd         => $cwd,
+      refreshonly => true,
+      notify      => Exec['move wpcli'],
   }
 
   exec {
-    'move-wp-cli':
-    command => 'sudo mv wp-cli.phar /usr/local/bin/wp',
-    cwd => '/vagrant',
-    require => Exec['make-wp-cli-executable'],
-    unless => 'ls /usr/local/bin/wp',
+    'move wpcli':
+      command     => 'sudo mv wp-cli.phar /usr/local/bin/wp',
+      cwd         => $cwd,
+      refreshonly => true,
   }
 }
