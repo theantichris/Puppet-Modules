@@ -12,7 +12,7 @@ class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'data
   }
 
   exec{
-    'set-myconf-permissions':
+    'set myconf permissions':
       command => 'sudo chmod 644 /etc/mysql/my.cnf',
       require => File['/etc/mysql/my.cnf'],
   }
@@ -20,7 +20,7 @@ class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'data
   package {
     ['mysql-server-5.6', 'php5-mysql']:
       ensure  => present,
-      require => Exec['update-package-list', 'set-myconf-permissions'],
+      require => Exec['install packages', 'set myconf permissions'],
   }
 
   service {
@@ -30,17 +30,16 @@ class mysql($rootUsername = 'root', $rootPassword = '123', $databaseName = 'data
   }
 
   exec {
-    'set-mysql-root-password':
+    'set mysql root password':
       unless  => "mysqladmin -u${rootUsername} -p${rootPassword} status",
       command => "mysqladmin -u ${rootUsername} password ${rootPassword}",
       require => Service['mysql']
   }
 
-# Create a new database.
   exec {
-    'create-database':
+    'create database':
       unless  => "mysql -u${rootUsername} -p${rootPassword} ${databaseName}",
       command => "mysql -u${rootUsername} -p${rootPassword} -e \"create database ${databaseName};\"",
-      require => Exec['set-mysql-root-password']
+      require => Exec['set mysql root password']
   }
 }
