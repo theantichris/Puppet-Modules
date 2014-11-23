@@ -4,13 +4,13 @@ class composer($cwd = '/vagrant', $user = 'vagrant') {
       command => 'curl -sS https://getcomposer.org/installer | php',
       creates => '/usr/local/bin/composer',
       require => Package['php5-cli'],
-      notify  => Exec['move composer'],
   }
 
   exec {
     'move composer':
       command     => 'mv composer.phar /usr/local/bin/composer',
-      refreshonly => true,
+      require     => Exec['download composer'],
+      creates     => '/usr/local/bin/composer',
   }
 
   exec {
