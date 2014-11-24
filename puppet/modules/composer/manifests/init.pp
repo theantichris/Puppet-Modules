@@ -15,10 +15,11 @@ class composer($cwd = '/vagrant', $user = 'vagrant') {
 
   exec {
     'run composer update':
-      command => 'composer update --quiet --no-interaction',
-      cwd     => $cwd,
-      user    => $user,
-      onlyif  => "ls ${cwd}/composer.json",
-      require => Exec['move composer'],
+      command     => 'composer update --quiet --no-interaction',
+      environment => "COMPOSER_HOME=/home/${user}/.composer",
+      cwd         => $cwd,
+      user        => $user,
+      onlyif      => "ls ${cwd}/composer.json",
+      require     => Exec['move composer'],
   }
 }
