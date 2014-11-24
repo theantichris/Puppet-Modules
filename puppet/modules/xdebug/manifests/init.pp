@@ -5,54 +5,55 @@ class xdebug($xdebugVersion = 'xdebug-2.2.5', $homeDirectory = '/home/vagrant', 
       creates  => $installedFile,
       cwd      => $homeDirectory,
       require  => Package['php5-fpm', 'php5-dev'],
-      notify   => Exec['unpack xdebug'],
   }
 
   exec {
     'unpack xdebug':
-      command     => "tar -xvzf ${xdebugVersion}.tgz",
-      cwd         => $homeDirectory,
-      refreshonly => true,
-      notify      => Exec['phpize xdebug'],
+      command => "tar -xvzf ${xdebugVersion}.tgz",
+      creates => $installedFile,
+      cwd     => $homeDirectory,
+      require => Exec['download xdebug'],
   }
 
   exec {
     'phpize xdebug':
-      command     => 'phpize5',
-      cwd         => "${homeDirectory}/${xdebugVersion}",
-      refreshonly => true,
-      notify      => Exec['configure xdebug'],
+      command => 'phpize5',
+      creates => $installedFile,
+      cwd     => "${homeDirectory}/${xdebugVersion}",
+      require => Exec['unpack xdebug'],
   }
 
   exec {
     'configure xdebug':
-      command     => 'sudo ./configure',
-      cwd         => "${homeDirectory}/${xdebugVersion}",
-      refreshonly => true,
-      notify      => Exec['make xdebug'],
+      command => 'sudo ./configure',
+      creates => $installedFile,
+      cwd     => "${homeDirectory}/${xdebugVersion}",
+      require => Exec['phpize xdebug'],
   }
 
   exec {
     'make xdebug':
-      command     => 'sudo make',
-      cwd         => "${homeDirectory}/${xdebugVersion}",
-      refreshonly => true,
-      notify      => Exec['copy xdebug'],
+      command => 'sudo make',
+      creates => $installedFile,
+      cwd     => "${homeDirectory}/${xdebugVersion}",
+      require => Exec['configure xdebug'],
   }
 
   exec {
     'copy xdebug':
-      command     => "sudo cp modules/xdebug.so ${installedFile}",
-      cwd         => "${homeDirectory}/${xdebugVersion}",
-      refreshonly => true,
-      notify      => Exec['update php.ini']
+      command => "sudo cp modules/xdebug.so ${installedFile}",
+      creates => $installedFile,
+      cwd     => "${homeDirectory}/${xdebugVersion}",
+      require => Exec['make xdebug'],
+      notify  => Exec['update php.ini'],
   }
 
   exec {
     'update php.ini':
       command     => "sudo echo 'zend_extension = ${installedFile}' >> /etc/php5/fpm/php.ini",
+      require     => Exec['copy xdebug'],
       refreshonly => true,
-      notify      => [Service['php5-fpm'], Exec['delete xdebug download']],
+      notify      => Exec['delete xdebug download'],
   }
 
   exec {
