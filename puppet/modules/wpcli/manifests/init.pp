@@ -17,6 +17,7 @@ class wpcli($cwd = '/vagrant'){
   exec {
     'move wpcli':
       command => 'sudo mv wp-cli.phar /usr/local/bin/wp',
+      creates => '/usr/local/bin/wp',
       cwd     => $cwd,
       require => Exec['make wpcli executable'],
   }
