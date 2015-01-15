@@ -53,6 +53,15 @@ class nginx($webRoot = '/vagrant/web') {
       ensure => directory,
   }
 
+# Create NGINX config file with sendfile set to off.
+  file {
+    '/etc/nginx/nginx.conf':
+      ensure  => present,
+      source  => 'puppet:///modules/nginx/nginx.conf',
+      notify  => Service['nginx'],
+      require => Package['nginx'],
+  }
+
 # Create the virtual host file from the module.
   file {
     '/etc/nginx/conf.d/puppet.conf':
