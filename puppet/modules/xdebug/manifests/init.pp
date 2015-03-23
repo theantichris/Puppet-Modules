@@ -45,7 +45,7 @@ class xdebug($xdebugVersion = 'xdebug-2.3.2', $homeDirectory = '/home/vagrant', 
       creates => $installedFile,
       cwd     => "${homeDirectory}/${xdebugVersion}",
       require => Exec['make xdebug'],
-      notify  => Exec['update php.ini'],
+      notify  => Exec['update fpm php.ini', 'update cli php.ini'],
   }
 
   exec {
