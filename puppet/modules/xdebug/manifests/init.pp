@@ -1,4 +1,4 @@
-class xdebug($xdebugVersion = 'xdebug-2.2.5', $homeDirectory = '/home/vagrant', $installedFile = '/usr/lib/php5/20121212/xdebug.so'){
+class xdebug($xdebugVersion = 'xdebug-2.3.2', $homeDirectory = '/home/vagrant', $installedFile = '/usr/lib/php5/20121212/xdebug.so'){
   exec {
     'download xdebug':
       command  => "curl -O http://xdebug.org/files/${xdebugVersion}.tgz",
