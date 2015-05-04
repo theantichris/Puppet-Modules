@@ -49,8 +49,16 @@ class xdebug($xdebugVersion = 'xdebug-2.3.2', $homeDirectory = '/home/vagrant', 
   }
 
   exec {
-    'update php.ini':
+    'update fpm php.ini':
       command     => "sudo echo 'zend_extension = ${installedFile}' >> /etc/php5/fpm/php.ini",
+      require     => Exec['copy xdebug'],
+      refreshonly => true,
+      notify      => Service['php5-fpm'],
+  }
+
+  exec {
+    'update cli php.ini':
+      command     => "sudo echo 'zend_extension = ${installedFile}' >> /etc/php5/cli/php.ini",
       require     => Exec['copy xdebug'],
       refreshonly => true,
       notify      => [Exec['delete xdebug download'], Service['php5-fpm']],
